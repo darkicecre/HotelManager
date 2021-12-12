@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="ThemeDesign" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        
+        <!-- DataTables -->
+        <link href="/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css">
+        
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+        
+    </head>
+    <body class="fixed-left">
+        <div id="wrapper">
+            {{> nav}}
+            {{> sidebar}}
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-header-title">
+                                    <h4 class="pull-left page-title">{{tag}}</h4>
+                                    {{!-- <ol class="breadcrumb pull-right">
+                                        <li><a href="#">Xadmino</a></li>
+                                        <li><a href="#">Tables</a></li>
+                                        <li class="active">Datatables</li>
+                                    </ol> --}}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{{body}}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+        <!--JQuery-->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>/
+        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/wow.min.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Datatables-->
+        <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="/assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+
+        <!-- Parsleyjs -->
+        <script type="text/javascript" src="/assets/plugins/parsleyjs/parsley.min.js"></script>
+        <script src="/assets/js/app.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function() {
+				$('form').parsley();
+			});
+		</script>
+
+
+        <script src="/assets/pages/dashborad.js"></script>
+
+        <!-- Sweet-Alert  -->
+        <script src="/assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+        <script src="/assets/pages/sweet-alert.init.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="/assets/pages/datatables.init.js"></script>
+
+       
+
+        
+</html>

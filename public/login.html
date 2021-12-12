@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="ThemeDesign" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+
+    <body>
+
+        <!-- Begin page -->
+        <div class="accountbg"></div>
+        <div class="wrapper-page">
+            <div class="panel panel-color panel-primary panel-pages">
+
+                <div class="panel-body">
+                    <h3 class="text-muted text-center m-t-0"><b>Sign In</b></h3>
+
+                    <div class="form-horizontal m-t-20" >
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input id="username" class="form-control" type="text" required="" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input name="password" id="password" class="form-control" type="password" required="" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button id="logIn" class="btn btn-primary w-md waves-effect waves-light" >Log In</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="./customer">
+                                <h5 id="haha" style="float: right;">View Page With Customer Role</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+       <script src="assets/js/modernizr.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="assets/js/app.js"></script>
+        <script>
+            $('#logIn').bind('click',async function(){
+                const url = 'http://localhost:3000/login?username='+$('#username').val()+'&pass='+$('#password').val();
+                const response = await fetch(url);
+                const str = await response.text();
+                const obj = JSON.parse(str);
+                if(obj.length==0){
+                    alert('Thông tin đăng nhập không hợp lệ. Mời nhập lại');
+                    $('#username').val('');
+                    $('#password').val('');
+                }
+                else{
+                    alert('Đăng nhập thành công, role bạn là: '+obj[0].role)
+                    window.location.href = "./mainPage";
+                }
+                
+            })
+        </script>
+        
+    </body>
+</html>
