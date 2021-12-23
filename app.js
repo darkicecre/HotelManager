@@ -22,6 +22,9 @@ var mongo = new MongoClient(url,{useNewUrlParser:true});
 //routes
 const { redirect } = require('express/lib/response');
 const customerMainPage = require('./routes/customer/mainpage');
+const customerAvailableRoom = require('./routes/customer/availableRoom');
+const booking = require('./routes/customer/booking');
+const payment = require('./routes/customer/payment');
 //hbs
 app.set('view engine', 'hbs');
 app.set('views',  path.join(__dirname, 'views'));
@@ -59,6 +62,9 @@ app.get('/login',(req,res)=>{
 })
 app.use('/customer',customerMainPage);
 app.use('/mainPage',customerMainPage);
+app.use('/availableRoom', customerAvailableRoom);
+app.use('/booking', booking);
+app.use('/payment',payment);
 //do not change
 const port = process.env.PORT || 3000;
 app.listen(port, ()=> console.log("Server listening on port "+ port));

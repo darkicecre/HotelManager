@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Phòng</th>
+      <th scope="col">Loại phòng</th>
+      <th scope="col">Đơn giá</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data}}
+    <tr>
+      <td>{{this.Phong}}</td>
+      <td>{{this.LoaiPhong}}</td>
+      <td>{{this.DonGia}}</td>
+      <td>
+          <button type="button" class="btn btn-primary w-md waves-effect waves-light"> Liên hệ đặt phòng này </button>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
