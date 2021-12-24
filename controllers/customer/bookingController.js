@@ -21,7 +21,57 @@ const list = (req,res) => {
 }
 
 const book = (req,res)=>{
-    
+    mongo.connect((err,db)=>{
+        if(err) throw err;
+        console.log("Kết nối thành công");
+        var dbo = db.db("HotelManager");  // Tên database
+        console.log(req.params)
+        const cursor = dbo.collection('DanhSachPhong').findOne({"Phong": req.params.Phong}, function(err, objs){
+            if(err) throw err;
+            db.close();
+            res.render('customer/makeBookingNote',{
+                title: "Tạo phiếu thuê phòng.",
+                phong: objs.Phong,
+            });
+        });
+    });
 }
 
-module.exports = { list }; 
+const savetoDB = (req,res)=>{
+    console.log(req)
+    const {phong, ngayThue, hoTen, loai, cMND, diaChi} = req.body;
+    if(phong == "" || ngayThue =="" || hoTen=="" || loai=="" || cMND=="" || diaChi==""){
+        res.render('customer/makeBookingNote',{
+            title: "Thất bại!",
+            alertFail: "Có trường còn trống! Vui lòng nhập lại.",
+            phong: phong
+        });
+    }
+    else{
+        mongo.connect(async (err,db)=>{
+            console.log("Ket noi de luu");
+            var dbo = db.db("HotelManager"); //Tên database
+            await dbo.collection("PhieuThuePhong").insertOne({
+                Phong: phong,
+                NgayThue: ngayThue,
+                HoTen: hoTen,
+                Loai: loai,
+                CMND: cMND,
+                DiaChi: diaChi,
+            })
+            await dbo.collection("DanhSachPhong").updateOne(
+                {Phong: phong},
+                {
+                    $set: { 'TinhTrang': 'Đã book'},
+                    $currentDate: { lastModified: true }
+                }
+            )
+            res.render('customer/makeBookingNote',{
+                title: "Thành công!",
+                lertSuccess: "Đặt phònag thành công!"
+            });
+        })
+    }
+}
+
+module.exports = { list, book, savetoDB }; 
