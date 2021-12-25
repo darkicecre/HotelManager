@@ -39,7 +39,7 @@ const book = (req,res)=>{
 
 const savetoDB = (req,res)=>{
     console.log(req)
-    const {phong, ngayThue, hoTen, loai, cMND, diaChi} = req.body;
+    const {phong, ngayThue, hoTen, loai, cMND, diaChi, soKhach} = req.body;
     if(phong == "" || ngayThue =="" || hoTen=="" || loai=="" || cMND=="" || diaChi==""){
         res.render('customer/makeBookingNote',{
             title: "Thất bại!",
@@ -58,6 +58,7 @@ const savetoDB = (req,res)=>{
                 Loai: loai,
                 CMND: cMND,
                 DiaChi: diaChi,
+                SoKhach: soKhach,
             })
             await dbo.collection("DanhSachPhong").updateOne(
                 {Phong: phong},

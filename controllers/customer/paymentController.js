@@ -20,4 +20,22 @@ const list = (req,res) => {
     });
 }
 
-module.exports = { list }; 
+const makeBill = (req,res)=>{
+    mongo.connect((err,db)=>{
+        if(err) throw err;
+        console.log("Kết nối thành công");
+        var dbo = db.db("HotelManager");  // Tên database
+        console.log(req.params)
+        const cursor = dbo.collection('PhieuThuePhong').findOne({"Phong": req.params.Phong}, function(err, objs){
+            console.log(objs)
+            if(err) throw err;
+            db.close();
+            res.render('customer/makeBill',{
+                title: "Tạo phiếu thuê phòng.",
+                bookingNote: objs,
+            });
+        });
+    });
+}
+
+module.exports = { list, makeBill }; 
