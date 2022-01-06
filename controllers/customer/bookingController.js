@@ -51,25 +51,30 @@ const savetoDB = (req,res)=>{
         mongo.connect(async (err,db)=>{
             console.log("Ket noi de luu");
             var dbo = db.db("HotelManager"); //Tên database
-            await dbo.collection("PhieuThuePhong").insertOne({
-                Phong: phong,
-                NgayThue: ngayThue,
-                HoTen: hoTen,
-                Loai: loai,
-                CMND: cMND,
-                DiaChi: diaChi,
-                SoKhach: soKhach,
-            })
-            await dbo.collection("DanhSachPhong").updateOne(
-                {Phong: phong},
-                {
-                    $set: { 'TinhTrang': 'Đã book'},
-                    $currentDate: { lastModified: true }
-                }
-            )
-            res.render('customer/makeBookingNote',{
-                title: "Thành công!",
-                lertSuccess: "Đặt phònag thành công!"
+            const cursor = dbo.collection('DanhSachPhong').findOne({"Phong": phong}, async function(err, objs){
+                if(err) throw err;
+                await dbo.collection("PhieuThuePhong").insertOne({
+                    Phong: phong,
+                    DonGia: objs.DonGia,
+                    NgayThue: ngayThue,
+                    HoTen: hoTen,
+                    Loai: loai,
+                    CMND: cMND,
+                    DiaChi: diaChi,
+                    SoKhach: soKhach,
+                })
+                await dbo.collection("DanhSachPhong").updateOne(
+                    {Phong: phong},
+                    {
+                        $set: { 'TinhTrang': 'Đã book'},
+                        $currentDate: { lastModified: true }
+                    }
+                )
+                db.close();
+                res.render('customer/makeBookingNote',{
+                    title: "Thành công!",
+                    alertSuccess: "Đặt phòng thành công!"
+                });
             });
         })
     }
