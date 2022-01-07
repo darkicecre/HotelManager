@@ -3,6 +3,8 @@ var url = "mongodb+srv://admin:GgI094u5Yf0DguJ0@cluster0.wo3to.mongodb.net/Hotel
 var mongo = new MongoClient(url, { useNewUrlParser: true });
 
 const list = (req, res) => {
+    const paramString = new URLSearchParams(req.query);
+    const username = paramString.get("username");
     mongo.connect((err, db) => {
         if (err) throw err;
         console.log("Kết nối thành công");
@@ -12,15 +14,19 @@ const list = (req, res) => {
             if (err) throw err;
             db.close();
             data = objs;
-            res.render('customer/payment', {
+            res.render('thungan/payment', {
                 title: "Hotel",
-                data
+                data,
+                UserName: username,
+                ThuNgan: true,
             });
         })
     });
 }
 
 const makeBill = (req, res) => {
+    const paramString = new URLSearchParams(req.query);
+    const username = paramString.get("username");
     mongo.connect((err, db) => {
         if (err) throw err;
         console.log("Kết nối thành công");
@@ -35,13 +41,21 @@ const makeBill = (req, res) => {
             const bookingDate = new Date(objs.NgayThue);
             // Số ngày ở làm tròn lên (ví dụ ở 2 ngày 2 tiếng là ở 3 ngày)
             const numOfDates = Math.floor((currentDate.getTime() - bookingDate.getTime()) / (1000 * 3600 * 24)) + 1;
-            const totalCash = numOfDates * objs.DonGia
-            res.render('customer/makeBill', {
+            let totalCash = numOfDates * objs.DonGia
+            if (objs.SoKhach > 2){
+                totalCash += (objs.SoKhach - 2)*totalCash*0.25;
+            }
+            if (objs.Loai == 'Nước ngoài'){
+                totalCash *= 1.5;
+            }
+            res.render('thungan/makeBill', {
                 title: "Tạo phiếu thuê phòng.",
                 bookingNote: objs,
                 date: today,
                 bookingDates: numOfDates,
                 money: totalCash,
+                UserName: username,
+                ThuNgan: true,
             });
         });
     });
@@ -49,7 +63,7 @@ const makeBill = (req, res) => {
 
 const addBill = (req, res) => {
     console.log(req)
-    const { hoTen, diaChi, ngayThue, ngayThanhToan, phong, soNgayThue, donGia, thanhTien } = req.body;
+    const { username, hoTen, diaChi, ngayThue, ngayThanhToan, phong, soNgayThue, donGia, thanhTien } = req.body;
     mongo.connect(async (err, db) => {
         console.log("Ket noi de luu");
         var dbo = db.db("HotelManager"); //Tên database
@@ -74,9 +88,11 @@ const addBill = (req, res) => {
         // Xóa phiếu thuê phòng
         await dbo.collection("PhieuThuePhong").deleteOne({Phong: phong});
         db.close();
-        res.render('customer/makeBill', {
+        res.render('thungan/makeBill', {
             title: "Thành công!",
-            alertSuccess: "Phòng đã được thanh toán!"
+            alertSuccess: "Phòng đã được thanh toán!",
+            UserName: username,
+            ThuNgan: true,
         });
     });
 }

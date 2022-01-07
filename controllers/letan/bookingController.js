@@ -3,6 +3,8 @@ var url = "mongodb+srv://admin:GgI094u5Yf0DguJ0@cluster0.wo3to.mongodb.net/Hotel
 var mongo = new MongoClient(url,{useNewUrlParser:true});
 
 const list = (req,res) => {
+    const paramString = new URLSearchParams(req.query);
+    const username = paramString.get("username");
     mongo.connect((err,db)=>{
         if(err) throw err;
         console.log("Kết nối thành công");
@@ -12,8 +14,10 @@ const list = (req,res) => {
             if(err) throw err;
             db.close();
             data=objs;
-            res.render('customer/booking',{
+            res.render('letan/booking',{
                 title: "Hotel",
+                LeTan: true,
+                UserName: username,
                 data
             });
         })
@@ -21,6 +25,8 @@ const list = (req,res) => {
 }
 
 const book = (req,res)=>{
+    const paramString = new URLSearchParams(req.query);
+    const username = paramString.get("username");
     mongo.connect((err,db)=>{
         if(err) throw err;
         console.log("Kết nối thành công");
@@ -29,8 +35,10 @@ const book = (req,res)=>{
         const cursor = dbo.collection('DanhSachPhong').findOne({"Phong": req.params.Phong}, function(err, objs){
             if(err) throw err;
             db.close();
-            res.render('customer/makeBookingNote',{
+            res.render('letan/makeBookingNote',{
                 title: "Tạo phiếu thuê phòng.",
+                LeTan: true,
+                UserName: username,
                 phong: objs.Phong,
             });
         });
@@ -39,12 +47,15 @@ const book = (req,res)=>{
 
 const savetoDB = (req,res)=>{
     console.log(req)
-    const {phong, ngayThue, hoTen, loai, cMND, diaChi, soKhach} = req.body;
+    const {username, phong, ngayThue, hoTen, loai, cMND, diaChi, soKhach} = req.body;
+    console.log(username);
     if(phong == "" || ngayThue =="" || hoTen=="" || loai=="" || cMND=="" || diaChi==""){
-        res.render('customer/makeBookingNote',{
+        res.render('letan/makeBookingNote',{
             title: "Thất bại!",
             alertFail: "Có trường còn trống! Vui lòng nhập lại.",
-            phong: phong
+            phong: phong,
+            LeTan: true,
+            UserName: username,
         });
     }
     else{
@@ -71,9 +82,11 @@ const savetoDB = (req,res)=>{
                     }
                 )
                 db.close();
-                res.render('customer/makeBookingNote',{
+                res.render('letan/makeBookingNote',{
                     title: "Thành công!",
-                    alertSuccess: "Đặt phòng thành công!"
+                    alertSuccess: "Đặt phòng thành công!",
+                    LeTan: true,
+                    UserName: username,
                 });
             });
         })

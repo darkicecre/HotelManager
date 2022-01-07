@@ -7,16 +7,22 @@
 </div>
 {{/if}}
 <form onsubmit="return confirm('Bạn có chắc chắn muốn thanh toán?');" method="POST" action="/payment/addBill" id="BillForm" novalidate>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Tài khoản thu tiền</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="username" value={{UserName}}>
+    </div>
+  </div>
   <div class="form-group row">
     <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Khách hàng</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" name="hoTen" value="{{bookingNote.HoTen}}">
+      <input type="text" readonly class="form-control" name="hoTen" value="{{bookingNote.HoTen}}">
     </div>
   </div>
     <div class="form-group row">
     <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Địa chỉ</label>
     <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" name="diaChi" value="{{bookingNote.DiaChi}}">
+      <input type="text" readonly class="form-control" name="diaChi" value="{{bookingNote.DiaChi}}">
     </div>
   </div>
       <div class="form-group row">

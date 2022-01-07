@@ -1,37 +1,50 @@
- <div class="left side-menu">
-                <div class="sidebar-inner slimscrollleft">
-                    <div class="user-details">
-                        <div class="text-center">
-                            <img src="assets/images/users/avatar-1.jpg" alt="" class="img-circle">
-                        </div>
-                        <div class="user-info">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Kenny Rigdon</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"> Profile</a></li>
-                                    <li><a href="javascript:void(0)"> Settings</a></li>
-                                    <li><a href="javascript:void(0)"> Lock screen</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="javascript:void(0)"> Logout</a></li>
-                                </ul>
-                            </div>
-
-                            <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> Online</p>
-                        </div>
-                    </div>
-                    <!--- Divider -->
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li>
-                                <a href="index.html" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
-                                <a href="/availableRoom" class="waves-effect"><i class="ti-home"></i><span> Danh sách phòng trống </span></a>
-                                <a href="/booking" class="waves-effect"><i class="ti-home"></i><span> Đặt phòng </span></a>
-                                <a href="/payment" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a>
-                            </li>
-
-                       
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div> <!-- end sidebarinner -->
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <div class="user-details">
+            <div class="text-center">
+                <img src="/assets/images/users/maleAva.png" alt="" class="img-circle">
             </div>
+            <div class="user-info">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{#if UserName}}
+                        <span>{{UserName}}</span>
+                        {{/if}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)"> Profile</a></li>
+                        <li><a href="javascript:void(0)"> Settings</a></li>
+                        <li><a href="javascript:void(0)"> Lock screen</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/login.html"> Logout</a></li>
+                    </ul>
+                </div>
+
+                <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> Online</p>
+            </div>
+        </div>
+        <!--- Divider -->
+        <div id="sidebar-menu">
+            <ul>
+                <li>
+                    {{#if Guest}}
+                    <a href="/mainPage/Guest?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
+                    <a href="/availableRoom?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh sách phòng trống
+                        </span></a>
+                    {{/if}}
+                    {{#if LeTan}}
+                    <a href=".mainPage/LeTan?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
+                    <a href= "/booking?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Đặt phòng </span></a>
+                    {{/if}}
+                    {{#if ThuNgan}}
+                    <a href="/mainPage/ThuNgan?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
+                    <a href="/payment?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a>
+                    {{/if}}
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div> <!-- end sidebarinner -->
+</div>

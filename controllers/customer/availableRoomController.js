@@ -14,6 +14,8 @@ const list = (req,res) => {
             data=objs;
             res.render('customer/availableRoom',{
                 title: "Hotel",
+                UserName: "Guest",
+                Guest: true,
                 data
             });
         })

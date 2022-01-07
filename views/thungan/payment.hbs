@@ -13,7 +13,7 @@
       <td>{{this.LoaiPhong}}</td>
       <td>{{this.DonGia}}</td>
       <td>
-          <a href="payment/makeBill/{{this.Phong}}" type="button" class="btn btn-primary w-md waves-effect waves-light">Thanh toán</a>
+          <a href="payment/makeBill/{{this.Phong}}?username={{../UserName}}" type="button" class="btn btn-primary w-md waves-effect waves-light">Thanh toán</a>
       </td>
     </tr>
     {{/each}}
