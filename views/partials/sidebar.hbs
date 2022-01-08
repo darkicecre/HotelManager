@@ -40,6 +40,10 @@
                     <a href="/mainPage/ThuNgan?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
                     <a href="/payment?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a>
                     {{/if}}
+                    {{#if Admin}}
+                    <a href="/mainPage/Admin?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh mục phòng </span></a>
+                    {{!-- <a href="/payment?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a> --}}
+                    {{/if}}
                 </li>
 
 
