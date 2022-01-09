@@ -1,10 +1,9 @@
 {
   "name": "nmcnpm",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"nodemon app.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +12,22 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hbs": "^4.2.0",
-    "mongodb": "^4.2.1"
+    "mongodb": "^4.2.1",
+    "mongoose": "^6.1.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkicecre/HotelManager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darkicecre/HotelManager/issues"
+  },
+  "homepage": "https://github.com/darkicecre/HotelManager#readme",
+  "description": ""
 }

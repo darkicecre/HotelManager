@@ -48,7 +48,7 @@
                         </div>
 
                         <div>
-                            <a href="./customer">
+                            <a href="./mainPage/Guest?username=Guest">
                                 <h5 id="haha" style="float: right;">View Page With Customer Role</h5>
                             </a>
                         </div>
@@ -87,7 +87,7 @@
                 }
                 else{
                     alert('Đăng nhập thành công, role bạn là: '+obj[0].role)
-                    window.location.href = "./mainPage";
+                    window.location.href = "./mainPage/" + obj[0].role + "?username=" + obj[0].username;
                 }
                 
             })

@@ -1,0 +1,44 @@
+.menu{
+    width: 100%;
+}
+.menu img{
+    width: 100px;
+}
+.menu ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.danhmuc{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-left: 50px;
+    background-color: rgb(226, 215, 215);
+    padding: 30px;
+    margin: auto;
+    margin-top: 30px;
+}
+.danhmuc .item_dm{}
+.danhmuc .item_dm img{
+    width: 200px;
+    height: 150px;
+}
+.danhmuc .item_dm a{
+    margin-left: 60px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.footer{
+    display: flex;
+    width: 100%;
+}
+.footer img{
+    width: 90px;
+    height: 70px;
+}
+.footer .infor{
+    margin-left: 50px;
+}

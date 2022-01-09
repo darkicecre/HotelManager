@@ -1,0 +1,73 @@
+{{#if alertSuccess}}
+<div class="alert alert-success " role="alert">
+  <strong>success!</strong> {{alertSuccess}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+<form onsubmit="return confirm('Bạn có chắc chắn muốn thanh toán?');" method="POST" action="/payment/addBill" id="BillForm" novalidate>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Tài khoản thu tiền</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="username" value={{UserName}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Khách hàng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="hoTen" value="{{bookingNote.HoTen}}">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Địa chỉ</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="diaChi" value="{{bookingNote.DiaChi}}">
+    </div>
+  </div>
+      <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Ngày thuê</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="ngayThue" value="{{bookingNote.NgayThue}}">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Ngày thanh toán</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="ngayThanhToan" value="{{date}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Số phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="phong" value={{bookingNote.Phong}}>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Loại phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="loaiPhong" value={{bookingNote.LoaiPhong}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Số ngày thuê</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="soNgayThue" value={{bookingDates}}>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Đơn giá</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="donGia" value={{bookingNote.DonGia}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Thành tiền</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="thanhTien" value={{money}}>
+    </div>
+  </div>
+  {{#unless alertSuccess}}
+  <button type="submit" class="btn btn-primary w-md waves-effect waves-light" id="submitButton">Thanh toán</button>
+  {{/unless}}
+</form>

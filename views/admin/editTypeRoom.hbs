@@ -1,0 +1,41 @@
+{{#if alertSuccess}}
+<div class="alert alert-success " role="alert">
+  <strong>success!</strong> {{alertSuccess}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if alertFail}}
+<div class="alert alert-warning " role="alert">
+  <strong>Fail!</strong> {{alertFail}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+<form method="POST" action="/admin/EditTypeRoom" id="addRoomForm" novalidate>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Tài khoản sửa thông tin loại phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="username" value="{{UserName}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Loại Phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="loaiPhong" value="{{dataTypeRoom.Loai}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Đơn giá</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="donGia" value="{{dataTypeRoom.DonGia}}"">
+    </div>
+  </div>
+  {{#unless alertSuccess}}
+  <button type="submit" class="btn btn-primary w-md waves-effect waves-light" id="submitButton">Thay đổi thông tin phòng</button>
+  {{/unless}}
+</form>

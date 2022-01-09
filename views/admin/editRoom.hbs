@@ -1,0 +1,51 @@
+{{#if alertSuccess}}
+<div class="alert alert-success " role="alert">
+  <strong>success!</strong> {{alertSuccess}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+{{#if alertFail}}
+<div class="alert alert-warning " role="alert">
+  <strong>Fail!</strong> {{alertFail}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+<form method="POST" action="/admin/EditRoom" id="addRoomForm" novalidate>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Tài khoản sửa thông tin phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="username" value="{{UserName}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Phòng</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control" name="phong" value="{{dataRoom.Phong}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Loại Phòng</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="exampleFormControlSelect1" name="loai">
+        {{#each data}}
+        <option>{{this.Loai}}</option>
+        {{/each}}
+    </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Ghi Chú</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="ghiChu" value="{{dataRoom.GhiChu}}"">
+    </div>
+  </div>
+  {{#unless alertSuccess}}
+  <button type="submit" class="btn btn-primary w-md waves-effect waves-light" id="submitButton">Thay đổi thông tin phòng</button>
+  {{/unless}}
+</form>
