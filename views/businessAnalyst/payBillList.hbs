@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Khách hàng</th>
+      <th scope="col">Ngày thanh toán</th>
+      <th scope="col">Phòng</th>
+      <th scope="col">Loại Phòng</th>
+      <th scope="col">Đơn giá</th>
+      <th scope="col">Số ngày thuê</th>
+      <th scope="col">Thành tiền</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data}}
+    <tr>
+      <td>{{this.HoTen}}</td>
+      <td>{{this.NgayThanhToan}}</td>
+      <td>{{this.Phong}}</td>
+      <td>{{this.LoaiPhong}}</td>
+      <td style="text-align: right;">{{this.DonGia}}</td>
+      <td style="text-align: right;">{{this.SoNgayThue}}</td>
+      <td style="text-align: right;">{{this.ThanhTien}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

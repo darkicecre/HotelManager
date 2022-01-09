@@ -40,6 +40,7 @@ const book = (req,res)=>{
                 LeTan: true,
                 UserName: username,
                 phong: objs.Phong,
+                loaiPhong: objs.LoaiPhong,
             });
         });
     });
@@ -47,7 +48,7 @@ const book = (req,res)=>{
 
 const savetoDB = (req,res)=>{
     console.log(req)
-    const {username, phong, ngayThue, hoTen, loai, cMND, diaChi, soKhach} = req.body;
+    const {username, phong, loaiPhong, ngayThue, hoTen, loai, cMND, diaChi, soKhach} = req.body;
     console.log(username);
     if(phong == "" || ngayThue =="" || hoTen=="" || loai=="" || cMND=="" || diaChi==""){
         res.render('letan/makeBookingNote',{
@@ -66,6 +67,7 @@ const savetoDB = (req,res)=>{
                 if(err) throw err;
                 await dbo.collection("PhieuThuePhong").insertOne({
                     Phong: phong,
+                    LoaiPhong: loaiPhong,
                     DonGia: objs.DonGia,
                     NgayThue: ngayThue,
                     HoTen: hoTen,

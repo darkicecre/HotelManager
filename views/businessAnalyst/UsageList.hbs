@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Phòng</th>
+      <th scope="col">Tổng số ngày thuê</th>
+      <th scope="col">Tỉ lệ</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data}}
+    <tr>
+      <td>{{this._id}}</td>
+      <td>{{this.TongNgayThue}}</td>
+      <td>{{this.TiLe}}%</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

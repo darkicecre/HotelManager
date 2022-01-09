@@ -1,6 +1,8 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://admin:GgI094u5Yf0DguJ0@cluster0.wo3to.mongodb.net/HotelManager?retryWrites=true&w=majority";
 var mongo = new MongoClient(url, { useNewUrlParser: true });
+var Double = require("Mongodb").Double;
+var Int32 = require("Mongodb").Int32;
 
 const list = (req, res) => {
     const paramString = new URLSearchParams(req.query);
@@ -63,7 +65,7 @@ const makeBill = (req, res) => {
 
 const addBill = (req, res) => {
     console.log(req)
-    const { username, hoTen, diaChi, ngayThue, ngayThanhToan, phong, soNgayThue, donGia, thanhTien } = req.body;
+    const { username, hoTen, diaChi, ngayThue, ngayThanhToan, phong, loaiPhong, soNgayThue, donGia, thanhTien } = req.body;
     mongo.connect(async (err, db) => {
         console.log("Ket noi de luu");
         var dbo = db.db("HotelManager"); //Tên database
@@ -72,9 +74,10 @@ const addBill = (req, res) => {
             HoTen: hoTen,
             DiaChi: diaChi,
             NgayThanhToan: ngayThanhToan,
-            ThanhTien: thanhTien,
+            ThanhTien: Double(thanhTien),
             Phong: phong,
-            SoNgayThue: soNgayThue,
+            LoaiPhong: loaiPhong,
+            SoNgayThue: Int32(soNgayThue),
             DonGia: donGia,
         })
         // Cập nhật tình trạng phòng

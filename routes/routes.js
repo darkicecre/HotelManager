@@ -31,10 +31,12 @@ router.get('/login',(req,res)=>{
 // mainPage
 const mainPageCtrl = require('../controllers/mainPageController');
 const adminCtrl = require('../controllers/CRUDRoomController');
+const businessAnalystCtrl = require('../controllers/businessReportController');
 router.get('/mainPage/Guest',mainPageCtrl.list);
 router.get('/mainPage/LeTan', mainPageCtrl.leTan);
 router.get('/mainPage/ThuNgan', mainPageCtrl.thuNgan);
 router.get('/mainPage/Admin', adminCtrl.list);
+router.get('/mainPage/NVKinhDoanh', businessAnalystCtrl.list);
 
 // customer
 const customerCtrl = require('../controllers/customerController');
@@ -44,7 +46,7 @@ router.get('/availableRoom/',customerCtrl.list);
 const paymentCtrl = require('../controllers/paymentController');
 router.get('/payment/', paymentCtrl.list);
 router.get('/payment/makeBill/:Phong', paymentCtrl.makeBill);
-router.post('/payment//addBill', paymentCtrl.addBill);
+router.post('/payment/addBill', paymentCtrl.addBill);
 
 // lễ tân
 const bookingCtrl = require('../controllers/bookingController');
@@ -61,6 +63,10 @@ router.get('/admin/deleteRoom/:Phong', adminCtrl.deleteRoom);
 router.get('/admin/editRoomForm/:Phong', adminCtrl.editRoomForm);
 router.post('/admin/editRoom', adminCtrl.editRoom)
 
+// Business analyst
+router.get('/BusinessAnalyst/', businessAnalystCtrl.list);
+router.get('/BusinessAnalyst/SalesList', businessAnalystCtrl.SalesList);
+router.get('/BusinessAnalyst/UsageDensity', businessAnalystCtrl.UsageList);
 
 module.exports = router;
 

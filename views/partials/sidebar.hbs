@@ -13,8 +13,6 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0)"> Profile</a></li>
-                        <li><a href="javascript:void(0)"> Settings</a></li>
-                        <li><a href="javascript:void(0)"> Lock screen</a></li>
                         <li class="divider"></li>
                         <li><a href="/login.html"> Logout</a></li>
                     </ul>
@@ -43,6 +41,11 @@
                     {{#if Admin}}
                     <a href="/mainPage/Admin?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh mục phòng </span></a>
                     {{!-- <a href="/payment?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a> --}}
+                    {{/if}}
+                    {{#if BusinessAnalyst}}
+                    <a href="/mainPage/NVKinhDoanh?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh sách hóa đơn </span></a>
+                    <a href="/BusinessAnalyst/SalesList?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Doanh thu theo phòng </span></a>
+                    <a href="/BusinessAnalyst/UsageDensity?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Mật độ sử dụng </span></a>
                     {{/if}}
                 </li>
 

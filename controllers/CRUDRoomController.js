@@ -151,6 +151,7 @@ const editRoomForm = (req, res) => {
         dbo.collection('DanhMucPhong').findOne({ Phong: req.params.Phong }, (err, objs) => {
             if (err) throw err;
             dataRoom = objs;
+            console.log(objs.GhiChu);
             const cursor = dbo.collection('LoaiPhong').find({});
             cursor.toArray((err, objs) => {
                 res.render('admin/editRoom', {
