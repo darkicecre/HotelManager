@@ -1,0 +1,34 @@
+{{#if Notifi}}
+<div class="alert alert-success " role="alert">
+  <strong>success!</strong> {{Notifi}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+<a href="admin/addNewTypeRoom?username={{UserName}}" type="button"
+  class="btn btn-primary w-md waves-effect waves-light">Thêm Loại Phòng Mới</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Loại phòng</th>
+      <th scope="col">Đơn giá</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+    <tr>
+      <td>{{this.Loai}}</td>
+      <td>{{this.DonGia}}</td>
+      <td>
+        <a href="admin/EditTypeRoom/{{this.Loai}}?username={{../UserName}}" type="button"
+          onclick="return confirm('Bạn có chắc chắn muốn sửa thông tin phòng {{this.Phong}}?');"
+          class="btn btn-primary w-md waves-effect waves-light">Sửa giá</a>
+        <a href="admin/DeleteTypeRoom/{{this.Loai}}?username={{../UserName}}" type="button"
+          onclick="return confirm('Bạn có chắc chắn muốn xóa?');"
+          class="btn btn-primary w-md waves-effect waves-light">Xóa</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

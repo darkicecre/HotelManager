@@ -56,12 +56,20 @@ router.get('/booking/makeBookingNote/:Phong', bookingCtrl.book);
 router.post('/booking/addBookingNote', bookingCtrl.savetoDB);
 
 // admin
+const adminEditRuleCtrl = require('../controllers/changeRule');
 router.get('/admin/', adminCtrl.list);
 router.get('/admin/addNewRoom', adminCtrl.addRoom);
 router.post('/admin/addNewRoom', adminCtrl.addNewRoom);
 router.get('/admin/deleteRoom/:Phong', adminCtrl.deleteRoom);
 router.get('/admin/editRoomForm/:Phong', adminCtrl.editRoomForm);
-router.post('/admin/editRoom', adminCtrl.editRoom)
+router.post('/admin/editRoom', adminCtrl.editRoom);
+
+router.get('/admin/editRoomType', adminEditRuleCtrl.list);
+router.get('/admin/addNewTypeRoom', adminEditRuleCtrl.addTypeRoom);
+router.post('/admin/addNewTypeRoom', adminEditRuleCtrl.addNewTypeRoom);
+router.get('/admin/deleteTypeRoom/:Loai', adminEditRuleCtrl.deleteTypeRoom);
+router.get('/admin/EditTypeRoom/:Loai', adminEditRuleCtrl.editTypeRoomForm);
+router.post('/admin/editTypeRoom', adminEditRuleCtrl.editTypeRoom);
 
 // Business analyst
 router.get('/BusinessAnalyst/', businessAnalystCtrl.list);

@@ -130,7 +130,7 @@ const deleteRoom = (req, res) => {
                     if (err) throw err;
                     data = objs;
                     res.render('admin/roomList', {
-                        title: "Tạo phiếu thuê phòng.",
+                        title: "Xóa",
                         Admin: true,
                         UserName: username,
                         Notifi: "Delete thành công",
@@ -206,7 +206,7 @@ const editRoom = (req, res) => {
                     }
                 )
                 res.render('admin/editRoom', {
-                    title: "Thất bại!",
+                    title: "Thành công!",
                     alertSuccess: "Thay đổi thông tin thành công!",
                     Admin: true,
                     UserName: username,

@@ -31,7 +31,7 @@
                         </span></a>
                     {{/if}}
                     {{#if LeTan}}
-                    <a href=".mainPage/LeTan?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
+                    <a href="/mainPage/LeTan?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Trang chủ </span></a>
                     <a href= "/booking?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Đặt phòng </span></a>
                     {{/if}}
                     {{#if ThuNgan}}
@@ -40,7 +40,7 @@
                     {{/if}}
                     {{#if Admin}}
                     <a href="/mainPage/Admin?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh mục phòng </span></a>
-                    {{!-- <a href="/payment?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Thanh toán </span></a> --}}
+                    <a href="/admin/editRoomType?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Loại Phòng </span></a>
                     {{/if}}
                     {{#if BusinessAnalyst}}
                     <a href="/mainPage/NVKinhDoanh?username={{UserName}}" class="waves-effect"><i class="ti-home"></i><span> Danh sách hóa đơn </span></a>

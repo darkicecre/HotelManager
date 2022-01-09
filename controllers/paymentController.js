@@ -37,28 +37,29 @@ const makeBill = (req, res) => {
         const cursor = dbo.collection('PhieuThuePhong').findOne({ "Phong": req.params.Phong }, function (err, objs) {
             console.log(objs)
             if (err) throw err;
-            db.close();
             const currentDate = new Date();
             const today = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
             const bookingDate = new Date(objs.NgayThue);
             // Số ngày ở làm tròn lên (ví dụ ở 2 ngày 2 tiếng là ở 3 ngày)
             const numOfDates = Math.floor((currentDate.getTime() - bookingDate.getTime()) / (1000 * 3600 * 24)) + 1;
-            let totalCash = numOfDates * objs.DonGia
-            if (objs.SoKhach > 2){
-                totalCash += (objs.SoKhach - 2)*totalCash*0.25;
-            }
-            if (objs.Loai == 'Nước ngoài'){
-                totalCash *= 1.5;
-            }
-            res.render('thungan/makeBill', {
-                title: "Tạo phiếu thuê phòng.",
-                bookingNote: objs,
-                date: today,
-                bookingDates: numOfDates,
-                money: totalCash,
-                UserName: username,
-                ThuNgan: true,
-            });
+            let totalCash = numOfDates * objs.DonGia;
+            dbo.collection('LoaiKhach').findOne({"Loai": objs.Loai}, (err, loaiKhach) =>{
+                totalCash *= loaiKhach.TLPhuThu;
+                dbo.collection('SoLuongKhach').findOne({}, (err,sl) =>{
+                    if (objs.SoKhach >= sl.PhuThuTai){
+                        totalCash += (objs.SoKhach - sl.PhuThuTai + 1)*totalCash*sl.TiLe;
+                    }
+                    res.render('thungan/makeBill', {
+                        title: "Tạo phiếu thuê phòng.",
+                        bookingNote: objs,
+                        date: today,
+                        bookingDates: numOfDates,
+                        money: totalCash,
+                        UserName: username,
+                        ThuNgan: true,
+                    });
+                })
+            })
         });
     });
 }
